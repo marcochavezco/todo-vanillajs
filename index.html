@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -28,13 +28,22 @@
     <title>TODOListo &mdash; ¡Que no se te pase nada!</title>
   </head>
   <body>
-    <header class="header">
+    <header class="header container">
       <button class="btn-mobile-nav">
         <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
-        <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
+        <!-- <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon> -->
       </button>
 
       <h2 class="logo"><span></span>todo</h2>
     </header>
+
+    <section class="add-item-section container">
+      <form class="add-item__form">
+        <input placeholder="Add Item" type="text" class="add-item__input" />
+        <button type="submit" class="add-item__btn">
+          <ion-icon class="add-item__icon" name="add-outline"></ion-icon>
+        </button>
+      </form>
+    </section>
   </body>
 </html>
