@@ -28,22 +28,72 @@
     <title>TODOListo &mdash; ¡Que no se te pase nada!</title>
   </head>
   <body>
-    <header class="header container">
-      <button class="btn-mobile-nav">
-        <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
-        <!-- <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon> -->
-      </button>
-
-      <h2 class="logo"><span></span>todo</h2>
-    </header>
-
-    <section class="add-item-section container">
-      <form class="add-item__form">
-        <input placeholder="Add Item" type="text" class="add-item__input" />
-        <button type="submit" class="add-item__btn">
-          <ion-icon class="add-item__icon" name="add-outline"></ion-icon>
+    <div class="app">
+      <header class="header container">
+        <button class="btn-mobile-nav">
+          <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+          <!-- <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon> -->
         </button>
-      </form>
-    </section>
+
+        <h2 class="logo"><span></span>todo</h2>
+      </header>
+
+      <section class="add-item-section container">
+        <form class="add-item__form">
+          <input placeholder="Add Item" type="text" class="add-item__input" />
+          <button type="submit" class="add-item__btn">
+            <ion-icon class="add-item__icon" name="add-outline"></ion-icon>
+          </button>
+        </form>
+      </section>
+
+      <section class="todo-section container">
+        <h3 class="heading-tertiary">to do</h3>
+
+        <div class="todo__items">
+          <div class="todo__row">
+            <div class="todo__check"></div>
+            <div class="todo__text">Pick up mail</div>
+            <div class="todo__date">
+              <span
+                ><ion-icon
+                  class="todo__calendar-icon"
+                  name="calendar-outline"
+                ></ion-icon></span
+              >Due to today
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="completed-section container">
+        <h3 class="heading-tertiary">completed</h3>
+
+        <div class="todo__items">
+          <div class="todo__row todo__row--completed">
+            <div class="todo__check todo__check--complete">
+              <ion-icon
+                class="todo__check__icon"
+                name="checkmark-sharp"
+              ></ion-icon>
+            </div>
+            <div class="todo__text todo__text--completed">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam,
+              eligendi ipsa optio quia perspiciatis autem ad neque saepe ullam,
+              fugit perferendis vitae alias culpa id at harum magni explicabo
+              voluptate!
+            </div>
+            <div class="todo__date todo__date--completed">
+              <span
+                ><ion-icon
+                  class="todo__calendar-icon"
+                  name="calendar-outline"
+                ></ion-icon></span
+              >Due to today
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   </body>
 </html>

@@ -5,6 +5,13 @@
 - Font sizes (px)
 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
 
+Mini - 1.2rem
+Small - font-size: 1.4rem;
+Medium - font-size: 2rem;
+Big - font-size: 2.4rem;
+
+
+
 - Font weights
 400
 500
@@ -30,14 +37,21 @@ Large: 1.8
 #489edb
 #3887d0
 
-#31305c
-#b1b1b1
-#a3a3a3
-#c4c4c4
+background - #31305c
+add item form - #272850
+focus / border separation - #55548b
+white - #f0f0f0
+gray - #a3a3a3 - #c4c4c4
 
 --- 05 SHADOWS
 
+box-shadow: inset 0 0 0 3px #55548b;
+
 --- 06 BORDER-RADIUS
+
+round - border-radius: 50%;
+round - border-radius: 999px;
+squared - border-radius: 10px;
 
 --- 07 WHITESPACE
 
@@ -63,6 +77,13 @@ body {
   background-color: #31305c;
 }
 
+.app {
+  height: 100vh;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  overflow: hidden;
+}
+
 /* HEADER */
 
 .header {
@@ -71,6 +92,7 @@ body {
   align-items: center;
 
   padding: 0 1.2rem;
+  height: 5%;
 }
 
 .btn-mobile-nav {
@@ -107,6 +129,11 @@ body {
   padding: 0.8rem 0 1.6rem 0;
   margin: 0 auto;
   border-bottom: 1px solid #55548b;
+  display: block;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .add-item__form {
@@ -114,7 +141,6 @@ body {
   justify-content: space-between;
   align-items: center;
 
-  margin: 1.2rem;
   height: 6.4rem;
   background-color: #272850;
   border-radius: 999px;
@@ -125,7 +151,7 @@ body {
 .add-item__form:focus-within {
   outline: none;
   box-shadow: inset 0 0 0 3px #55548b;
-  border-radius: 9999px;
+  border-radius: 999px;
 }
 
 .add-item__input {
@@ -135,13 +161,13 @@ body {
   background: none;
   padding-left: 1.6rem;
 
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-weight: 400;
-  color: #c4c4c4;
+  color: #f0f0f0;
 }
 
 .add-item__input::placeholder {
-  color: #c4c4c4;
+  color: #a3a3a3;
 }
 
 .add-item__form *:focus {
@@ -167,11 +193,116 @@ body {
   width: 2.4rem;
   height: 2.4rem;
 
-  color: #fff;
+  color: #f0f0f0;
+}
+
+/* TODO  */
+
+.todo-section {
+  height: 45%;
+  overflow: hidden;
+}
+
+.completed-section {
+  height: 35%;
+  overflow: hidden;
+}
+
+.todo__items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  width: 100%;
+  height: 90%;
+
+  overflow-y: scroll;
+}
+
+.todo__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+
+  padding: 1.6rem;
+
+  background-color: #55548b;
+  border-radius: 10px;
+  width: 100%;
+  height: 6.4rem;
+
+  white-space: nowrap;
+}
+
+.todo__row--completed {
+  background-color: #272850;
+}
+
+.todo__check {
+  min-width: 2.4rem;
+  min-height: 2.4rem;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo__check--complete {
+  background-color: #beebbc;
+}
+
+.todo__check__icon {
+  min-width: 2rem;
+  min-height: 2rem;
+  color: #355e34;
+}
+
+.todo__text {
+  font-size: 2rem;
+  line-height: 1.2;
+  color: #f0f0f0;
+  text-align: justify;
+
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.todo__text--completed {
+  text-decoration: line-through;
+  color: #a3a3a3;
+}
+
+.todo__date {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #d9e0ff;
+}
+
+.todo__date--completed {
+  color: #55548b;
 }
 /************************/
 
 .container {
   max-width: 77rem;
-  margin: 0 auto;
+  margin: 0 1.6rem;
+  padding: 1.6rem 1.2rem;
+}
+
+.heading-tertiary {
+  font-weight: 700;
+  color: #a3a3a3;
+  letter-spacing: 0.25px;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  margin: 1.2rem 0 1.2rem 3.2rem;
+  text-transform: uppercase;
+  align-self: flex-start;
 }
