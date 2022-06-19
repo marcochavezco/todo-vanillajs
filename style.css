@@ -141,6 +141,7 @@ body {
   justify-content: space-between;
   align-items: center;
 
+  width: 100%;
   height: 6.4rem;
   background-color: #272850;
   border-radius: 999px;
@@ -169,6 +170,14 @@ body {
 .add-item__input::placeholder {
   color: #a3a3a3;
 }
+
+/* .add-item__date,
+.add-item__time {
+} */
+
+/* *::-webkit-datetime-edit {
+  padding: 1.2rem;
+} */
 
 .add-item__form *:focus {
   outline: none;
@@ -219,7 +228,7 @@ body {
   overflow-y: scroll;
 }
 
-.todo__row {
+.todo__item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -235,7 +244,7 @@ body {
   white-space: nowrap;
 }
 
-.todo__row--completed {
+.todo__item--completed {
   background-color: #272850;
 }
 
@@ -292,7 +301,7 @@ body {
 
 .container {
   max-width: 77rem;
-  margin: 0 1.6rem;
+  margin: 0 auto;
   padding: 1.6rem 1.2rem;
 }
 

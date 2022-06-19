@@ -25,10 +25,10 @@
 
     <script defer src="./app.js"></script>
 
-    <title>TODOListo &mdash; ¡Que no se te pase nada!</title>
+    <title>TODOListo</title>
   </head>
   <body>
-    <div class="app">
+    <main class="app">
       <header class="header container">
         <button class="btn-mobile-nav">
           <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
@@ -41,6 +41,8 @@
       <section class="add-item-section container">
         <form class="add-item__form">
           <input placeholder="Add Item" type="text" class="add-item__input" />
+          <!-- <input type="date" class="add-item__date" />
+          <input type="time" class="add-item__time" /> -->
           <button type="submit" class="add-item__btn">
             <ion-icon class="add-item__icon" name="add-outline"></ion-icon>
           </button>
@@ -50,8 +52,8 @@
       <section class="todo-section container">
         <h3 class="heading-tertiary">to do</h3>
 
-        <div class="todo__items">
-          <div class="todo__row">
+        <div class="todo__items not-completed__container">
+          <!-- <div class="todo__item" data-id="123456788">
             <div class="todo__check"></div>
             <div class="todo__text">Pick up mail</div>
             <div class="todo__date">
@@ -62,15 +64,15 @@
                 ></ion-icon></span
               >Due to today
             </div>
-          </div>
+          </div> -->
         </div>
       </section>
 
       <section class="completed-section container">
         <h3 class="heading-tertiary">completed</h3>
 
-        <div class="todo__items">
-          <div class="todo__row todo__row--completed">
+        <div class="todo__items completed_container">
+          <!-- <div class="todo__item todo__item--completed" data-id="123456789">
             <div class="todo__check todo__check--complete">
               <ion-icon
                 class="todo__check__icon"
@@ -91,9 +93,9 @@
                 ></ion-icon></span
               >Due to today
             </div>
-          </div>
+          </div> -->
         </div>
       </section>
-    </div>
+    </main>
   </body>
 </html>
