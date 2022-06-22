@@ -15,15 +15,18 @@ const state = {
   todos: [],
 };
 
+/**
+ * When the form is submited gets form's text, then create the item object with an id, text and status by default 0
+ * @param {DOMEvent} e
+ */
 const addItem = function (e) {
   e.preventDefault();
 
   // Get form text
   const itemText = addItemInput.value;
-  console.log(itemText);
+  if (itemText === "") return;
 
   // Create item
-
   const item = {
     id: (Date.now() + "").slice(-10),
     text: itemText,
@@ -32,7 +35,6 @@ const addItem = function (e) {
 
   // Add item to todoList and update localStorage
   state.todos.push(item);
-  console.log(state);
 
   setLocalStorage();
 
@@ -42,20 +44,25 @@ const addItem = function (e) {
   renderTodo(item);
 };
 
+/**
+ * Set state.todos into localStorage
+ */
 const setLocalStorage = function () {
   localStorage.setItem("todos", JSON.stringify(state.todos));
 };
 
+/**
+ * Marks as completed the clicked todo item and renders it as completed
+ * @param {DOMEvent} e
+ */
 const completedItem = function (e) {
   // Works only if check button is clicked
   if (!e.target.classList.contains("todo__check")) return;
 
   const itemEl = e.target.closest(".todo__item");
-  console.log(itemEl);
 
   // Get item from todos by id
   const item = state.todos.find(i => i.id === itemEl.dataset.id);
-  console.log(item);
 
   // Mark item's status to 1;
   item.status = 1;
@@ -69,8 +76,53 @@ const completedItem = function (e) {
   renderTodo(item);
 };
 
-const unmarkComplItem = function () {};
+/**
+ * If todo item is checked as completed unmarks the item and renders it back as not-completed
+ * @param {DOMEvent} e
+ */
+const unmarkComplItem = function (e) {
+  if (!e.target.closest(".todo__check--complete")) return;
 
+  const complItemEl = e.target.closest(".todo__item--completed");
+
+  const complItem = state.todos.find(i => i.id === complItemEl.dataset.id);
+
+  complItem.status = 0;
+
+  setLocalStorage();
+
+  complContainer.removeChild(complItemEl);
+
+  renderTodo(complItem);
+};
+
+/**
+ * Removes item from state.todos if trash element is clicked
+ * @param {DOMEvent} e
+ */
+const deleteItem = function (e) {
+  // Works only if thash is clicked
+  if (!e.target.closest(".todo__trash")) return;
+
+  // Select item
+  const itemEl = e.target.closest(".todo__item");
+
+  const item = state.todos.find(i => i.id === itemEl.dataset.id);
+
+  // Remove item from state.todos
+  state.todos = state.todos.filter(i => i !== item);
+
+  setLocalStorage();
+
+  // Remove itemEl
+  const parentContainer = itemEl.parentElement;
+  parentContainer.removeChild(itemEl);
+};
+
+/**
+ * Based on todo item status render on screen the markup
+ * @param {object} todo
+ */
 const renderTodo = function (todo) {
   const html = generateItemMarkup(todo);
 
@@ -79,6 +131,9 @@ const renderTodo = function (todo) {
   if (todo.status) complContainer.insertAdjacentHTML("afterbegin", html);
 };
 
+/**
+ * Gets data from localStorage, set data as state.todos and render each todo item
+ */
 const renderLocalStorage = function () {
   // Get localStorage
   const data = JSON.parse(localStorage.getItem("todos"));
@@ -88,12 +143,11 @@ const renderLocalStorage = function () {
   state.todos = data;
 
   state.todos.forEach(todo => renderTodo(todo));
-  // state.todos.push(data);
 };
 
 /**
- *
- * @param {Array} todo
+ * Generate markup for not-completed todo items and completed todo items
+ * @param {array} todo
  * @returns {string}
  */
 const generateItemMarkup = function (todo) {
@@ -103,13 +157,11 @@ const generateItemMarkup = function (todo) {
       <div class="todo__item" data-id="${todo.id}">
         <div class="todo__check"></div>
         <div class="todo__text">${todo.text}</div>
-        <div class="todo__date">
-          <span
-            ><ion-icon
-              class="todo__calendar-icon"
-              name="calendar-outline"
-            ></ion-icon></span
-          >Due to today
+        <div class="todo__trash">
+          <ion-icon
+            class="todo__trash__icon"
+            name="trash-outline"
+          ></ion-icon>
         </div>
       </div>
     `;
@@ -127,13 +179,11 @@ const generateItemMarkup = function (todo) {
     <div class="todo__text todo__text--completed">
       ${todo.text}
     </div>
-    <div class="todo__date todo__date--completed">
-      <span
-        ><ion-icon
-          class="todo__calendar-icon"
-          name="calendar-outline"
-        ></ion-icon></span
-      >Due to today
+    <div class="todo__trash">
+      <ion-icon
+        class="todo__trash__icon"
+        name="trash-outline"
+      ></ion-icon>
     </div>
   </div>
   `;
@@ -144,9 +194,10 @@ const init = function () {
   addItemFormEl.addEventListener("submit", addItem);
 
   nComplContainer.addEventListener("click", completedItem);
+  nComplContainer.addEventListener("click", deleteItem);
 
-  // TODO
   complContainer.addEventListener("click", unmarkComplItem);
+  complContainer.addEventListener("click", deleteItem);
 };
 
 init();
